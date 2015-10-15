@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //crear nueva Activity para añadir nuevo boton a la lista
-                Intent intent = new Intent(MainActivity.this, AniadeElementoALista.class);
+                Intent intent = new Intent(MainActivity.this, AniadeElementox.class);
                 startActivityForResult(intent, 1234);
 
             }
