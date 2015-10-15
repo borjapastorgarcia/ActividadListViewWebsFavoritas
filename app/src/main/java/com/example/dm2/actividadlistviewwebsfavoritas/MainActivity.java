@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             String direccionImagen=extras.getString("direccionImagen");
             File imgFile=new File(direccionImagen);
             Bitmap myBitMap= BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            Log.e("VAlores que llegan","NombnrePaguna"+nombrePAgina+",url-->"+urlLeida+"Path de la imagen-->"+direccionImagen+",, Bitmap id-->"+myBitMap.getGenerationId());
+            Log.e("VAlores que llegan","NombnrePaguna"+nombrePAgina+",url-->"+urlLeida+"Path de la imagen-->"+direccionImagen+",, Bitmaps id-->"+myBitMap.getGenerationId());
             actualizaListView(new Web(nombrePAgina, urlLeida, myBitMap.getGenerationId()));
         }
     }
