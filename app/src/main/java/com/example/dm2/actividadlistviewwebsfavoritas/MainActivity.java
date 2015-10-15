@@ -1,16 +1,21 @@
 package com.example.dm2.actividadlistviewwebsfavoritas;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,8 +42,17 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult (int requestCode,int resultCode, Intent data) {
-        if (requestCode==1234 && resultCode==RESULT_OK)
-        { String res = data.getExtras().getString("resultado");  }
+        if (requestCode==1234 && resultCode==RESULT_OK){
+            Toast.makeText(this,"Ha llegado resultado. ",Toast.LENGTH_SHORT).show();
+            Bundle extras = data.getExtras();
+            String urlLeida=extras.getString("url");
+            String nombrePAgina=extras.getString("nombrePag");
+            String direccionImagen=extras.getString("direccionImagen");
+            File imgFile=new File(direccionImagen);
+            Bitmap myBitMap= BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            Log.e("VAlores que llegan","NombnrePaguna"+nombrePAgina+",url-->"+urlLeida+"Path de la imagen-->"+direccionImagen+",, Bitmap id-->"+myBitMap.getGenerationId());
+            actualizaListView(new Web(nombrePAgina, urlLeida, myBitMap.getGenerationId()));
+        }
     }
 
 

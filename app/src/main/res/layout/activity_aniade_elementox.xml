@@ -29,14 +29,14 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/etNombreWEb"
+        android:id="@+id/etNombreWeb"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Introduce el nombre de la Web" />
     <EditText
-        android:id="@+id/etUrl"
+        android:id="@+id/editUrl"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_width="match_parent"
