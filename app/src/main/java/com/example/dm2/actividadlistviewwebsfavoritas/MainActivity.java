@@ -8,24 +8,69 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ListView listaWebs;
     Web[]datosWeb;
+    ImageButton fab;
+    private ArrayList<Web>arrDatos=new ArrayList<Web>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        datosWeb=new Web[]{
-                new Web("Google","http://www.google.es",R.drawable.ic_google),
-                new Web("Bing","http://www.bing.es",R.drawable.ic_bing),
-                new Web("Yahoo","http://www.yahoo.es",R.drawable.ic_yahoo),
-                new Web("Marca","http://www.marca.es",R.drawable.ic_marca),
-                new Web("El Correo","http://www.elcorreo.es",R.drawable.ic_elcorreo)
-        };
+        fab=(ImageButton)findViewById(R.id.imageButton);
+        fab.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                //crear nueva Activity para añadir nuevo boton a la lista
+                Intent intent = new Intent(MainActivity.this, AniadeElementoALista.class);
+                startActivityForResult(intent, 1234);
+
+            }
+        });
+        actualizaListView(null);
+    }
+    @Override
+    protected void onActivityResult (int requestCode,int resultCode, Intent data) {
+        if (requestCode==1234 && resultCode==RESULT_OK)
+        { String res = data.getExtras().getString("resultado");  }
+    }
+
+
+    public void actualizaListView(Web w){
+        if(w!=null)
+            arrDatos.add(w);
+
+        arrDatos.add(new Web("Google","http://www.google.es",R.drawable.ic_google));
+        arrDatos.add(new Web("Bing","http://www.bing.es",R.drawable.ic_bing));
+        arrDatos.add(new Web("Yahoo","http://www.yahoo.es",R.drawable.ic_yahoo));
+        arrDatos.add(new Web("Marca","http://www.marca.es",R.drawable.ic_marca));
+        arrDatos.add(new Web("El Correo","http://www.elcorreo.es",R.drawable.ic_elcorreo));
+        arrDatos.add(new Web("Google","http://www.google.es",R.drawable.ic_google));
+        arrDatos.add(new Web("Bing","http://www.bing.es",R.drawable.ic_bing));
+        arrDatos.add(new Web("Yahoo","http://www.yahoo.es",R.drawable.ic_yahoo));
+        arrDatos.add(new Web("Marca","http://www.marca.es",R.drawable.ic_marca));
+        arrDatos.add(new Web("El Correo","http://www.elcorreo.es",R.drawable.ic_elcorreo));
+        arrDatos.add(new Web("Google","http://www.google.es",R.drawable.ic_google));
+        arrDatos.add(new Web("Bing","http://www.bing.es",R.drawable.ic_bing));
+        arrDatos.add(new Web("Yahoo","http://www.yahoo.es",R.drawable.ic_yahoo));
+        arrDatos.add(new Web("Marca","http://www.marca.es",R.drawable.ic_marca));
+        arrDatos.add(new Web("El Correo","http://www.elcorreo.es",R.drawable.ic_elcorreo));
+        datosWeb=new Web[arrDatos.size()];
+        for(int i=0;i<arrDatos.size();i++)
+            datosWeb[i]=arrDatos.get(i);
+
+
+
+
+
+
         AdaptadorUrl adaptador=new AdaptadorUrl(this,datosWeb);
         listaWebs=(ListView)findViewById(R.id.ListViewWebs);
         listaWebs.setAdapter(adaptador);
@@ -38,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -60,4 +104,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
